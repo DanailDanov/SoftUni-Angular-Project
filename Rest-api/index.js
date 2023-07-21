@@ -25,4 +25,4 @@ dbConnector()
 
     app.listen(config.port, console.log(`Listening on port ${config.port}!`));
   })
-  .catch(console.error);
+  .catch(console.error); 
