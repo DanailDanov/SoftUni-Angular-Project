@@ -6,10 +6,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CoreModule } from './core/core.module';
+import { HomeComponent } from './features/home/home.component';
+import { UserModule } from './features/user/user.module';
+import { ProductsHeaderComponent } from './features/products-header/products-header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    ProductsHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -17,6 +22,7 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     MaterialModule,
     CoreModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
