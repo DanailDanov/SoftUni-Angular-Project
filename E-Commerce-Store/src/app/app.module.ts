@@ -10,6 +10,8 @@ import { HomeComponent } from './features/home/home.component';
 import { UserModule } from './features/user/user.module';
 import { ProductsHeaderComponent } from './features/products-header/products-header.component';
 import { FiltersComponent } from './features/filters/filters.component';
+import { ProductBoxComponent } from './features/product-box/product-box.component';
+import { CartComponent } from './features/cart/cart.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { FiltersComponent } from './features/filters/filters.component';
     AppComponent,
     HomeComponent,
     ProductsHeaderComponent,
-    FiltersComponent
+    FiltersComponent,
+    ProductBoxComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
