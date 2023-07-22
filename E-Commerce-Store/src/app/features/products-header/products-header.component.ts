@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./products-header.component.css']
 })
 export class ProductsHeaderComponent {
-  @Output() ColumnsCountChange = new EventEmitter<number>();
+  @Output() columnsCountChange = new EventEmitter<number>();
 
   sort = 'desc';
   itemsShowCount = 12;
@@ -20,6 +20,6 @@ export class ProductsHeaderComponent {
   }
 
   onColumnsUpdated(colsNum: number): void {
-    this.ColumnsCountChange.emit(colsNum);
+    this.columnsCountChange.emit(colsNum);
   }
 }

@@ -9,12 +9,15 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './features/home/home.component';
 import { UserModule } from './features/user/user.module';
 import { ProductsHeaderComponent } from './features/products-header/products-header.component';
+import { FiltersComponent } from './features/filters/filters.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProductsHeaderComponent
+    ProductsHeaderComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,7 @@ import { ProductsHeaderComponent } from './features/products-header/products-hea
     BrowserAnimationsModule,
     MaterialModule,
     CoreModule,
-    UserModule
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
