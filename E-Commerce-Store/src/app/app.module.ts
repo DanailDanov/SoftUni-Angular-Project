@@ -12,6 +12,7 @@ import { ProductsHeaderComponent } from './features/products-header/products-hea
 import { FiltersComponent } from './features/filters/filters.component';
 import { ProductBoxComponent } from './features/product-box/product-box.component';
 import { CartComponent } from './features/cart/cart.component';
+import { CartService } from './services/cart.service';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { CartComponent } from './features/cart/cart.component';
     ProductsHeaderComponent,
     FiltersComponent,
     ProductBoxComponent,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,7 @@ import { CartComponent } from './features/cart/cart.component';
     CoreModule,
     UserModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
