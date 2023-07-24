@@ -26,11 +26,11 @@ import { CartService } from './services/cart.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     CoreModule,
+    MaterialModule,
     UserModule,
+    AppRoutingModule,
   ],
   providers: [CartService],
   bootstrap: [AppComponent]
