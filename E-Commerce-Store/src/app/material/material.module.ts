@@ -13,7 +13,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatInputModule} from '@angular/material/input';
 
 const materialComponents = [
   MatSidenavModule,
@@ -29,6 +29,7 @@ const materialComponents = [
   MatBadgeModule,
   MatSnackBarModule,
   MatFormFieldModule,
+  MatInputModule,
 ];
 
 @NgModule({
