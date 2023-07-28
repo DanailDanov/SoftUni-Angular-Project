@@ -15,6 +15,7 @@ import { CartComponent } from './features/cart/cart.component';
 import { CartService } from './services/cart.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { CartService } from './services/cart.service';
     FiltersComponent,
     ProductBoxComponent,
     CartComponent,
+    
   ],
   imports: [
     BrowserModule,
