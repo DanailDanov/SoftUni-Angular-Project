@@ -8,4 +8,4 @@ module.exports = () => {
     useCreateIndex: true,
     useFindAndModify: false
   });
-};
+};  

@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     const { email, password, rePassword } = form.value;
 
     this.subscription = this.userService
-      .register(email, password)
+      .register(email, password, rePassword)
       .subscribe({
         next: () => {
           this.router.navigate(['/'])

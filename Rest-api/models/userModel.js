@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: [5, 'Password should be at least 5 characters'],
+        minlength: [4, 'Password should be at least 4 characters'],
         validate: {
             validator: function (v) {
                 return /[a-zA-Z0-9]+/g.test(v);
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
             message: props => `${props.value} must contains only latin letters and digits!`
         },
     },
-}, { timestamps: { createdAt: 'created_at' } });
+});
 
 userSchema.methods = {
     matchPassword: function (password) {
@@ -48,4 +48,4 @@ userSchema.pre('save', function (next) {
     next();
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema); 

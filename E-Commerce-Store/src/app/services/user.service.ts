@@ -20,9 +20,9 @@ export class UserService implements OnDestroy {
     })
   }
 
-  register(email: string, password: string) {
+  register(email: string, password: string, rePassword: string) {
     return this.http
-      .post<User>('/api/register', { email, password })
+      .post<User>('http://localhost:3000/api/register', { email, password })
       .pipe(tap((user) => this.user$$.next(user)))
   }
 
@@ -31,6 +31,6 @@ export class UserService implements OnDestroy {
       this.subscription.unsubscribe();
     }
   }
-
-
+  
+ 
 }
