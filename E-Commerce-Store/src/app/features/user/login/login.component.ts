@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { ALLOWED_DOMAINS_FOR_EMAIL } from '../../constants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -8,39 +10,22 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  hide = true;
   
-
+  appEmailDomains = ALLOWED_DOMAINS_FOR_EMAIL;
+  subscription!: Subscription;
+  errMessage!: string;
+  
   constructor(private titlePage: Title) { }
 
   ngOnInit(): void {
     this.titlePage.setTitle('Login page');
   }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  LoginSubmit(form: NgForm) {
+   
   }
-
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
-
-  submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
-    }
-  }
-
-  @Input() error: string | null | undefined;
-
-  @Output() submitEM = new EventEmitter();
 
 
 }

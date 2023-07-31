@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { RegisterComponent } from './register/register.component';
 import { UserRoutingModule } from './user-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmailDirective } from './validators/email.directive';
 
 
 
@@ -12,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     LoginComponent,
     RegisterComponent,
+    EmailDirective,
   ],
   imports: [
     CommonModule,

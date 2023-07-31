@@ -1,42 +1,48 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { ALLOWED_DOMAINS_FOR_EMAIL } from '../../constants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
 
-  constructor(private titlePage: Title) { }
+  appEmailDomains = ALLOWED_DOMAINS_FOR_EMAIL;
+  subscription!: Subscription;
+  errMessage!: string;
+
+  constructor(
+    private titlePage: Title,
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.titlePage.setTitle('Login page');
+    this.titlePage.setTitle('Register page');
   }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  registerSubmit(form: NgForm) {
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
+    if (form.invalid) {
+      return;
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    const { email, password, rePassword } = form.value;
+
+    this.subscription = this.userService
+      .register(email, password)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/'])
+        },
+        error: (err) => this.errMessage = err.error.message
+      });
   }
 
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
-
-  submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
-    }
-  }
-
-  @Input() error: string | null | undefined;
-
-  @Output() submitEM = new EventEmitter();
 }

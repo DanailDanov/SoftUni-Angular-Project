@@ -1,29 +1,48 @@
 <mat-card>
   <mat-card-title>Login</mat-card-title>
 <mat-card-content>
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form #loginForm="ngForm" (ngSubmit)="LoginSubmit(loginForm)">
 <p>
   <mat-form-field>
     <mat-label>Enter your email</mat-label>
-    <input matInput placeholder="pat@example.com" [formControl]="email" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <input type="email" matInput placeholder="pat@example.com" name="email" ngModel 
+    #inputEmail="ngModel" 
+    required
+     [appEmail]="appEmailDomains">
+    <mat-error *ngIf="inputEmail.touched">
+      <div class="error-container">
+        <p *ngIf="inputEmail.errors?.['required']">
+          Email is required!
+        </p>
+        <p *ngIf="inputEmail.errors?.['emailValidator']">
+          Email is not valid!
+        </p>
+      </div>
+    </mat-error>
   </mat-form-field>
 </p>
 
 <p>
   <mat-form-field>
-    <input type="password" matInput placeholder="Password" formControlName="password">
+    <input type="password" matInput placeholder="Password" name="password" 
+    #inputPassword="ngModel" ngModel required minlength="4">
+    <mat-error *ngIf="inputPassword.touched">
+      <div class="error-container">
+        <p *ngIf="inputPassword.errors?.['required']">
+          Password is required!
+        </p>
+        <p *ngIf="inputPassword.errors?.['minlength']">
+          Password must be at least
+          {{inputPassword.errors?.['minlength']['requiredLength']}} characters!
+        </p>
+      </div>
+    </mat-error>
   </mat-form-field>
 </p>
 
-<p *ngIf="error" class="error">
-  {{ error }}
-</p>
-
 <div class="button">
-  <button type="submit" mat-button>Login</button>
+  <button type="submit" [disabled]="loginForm.invalid" mat-button>Login</button>
 </div>
-
 <div class="text-center">
   <p class="mb-0 mr-2 mt-3">Don't have an account ?
     <a class="text-cyan-600 " routerLink="/register">Register</a>

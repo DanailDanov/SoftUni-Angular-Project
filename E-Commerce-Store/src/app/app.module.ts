@@ -13,6 +13,7 @@ import { FiltersComponent } from './features/filters/filters.component';
 import { ProductBoxComponent } from './features/product-box/product-box.component';
 import { CartComponent } from './features/cart/cart.component';
 import { CartService } from './services/cart.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,6 +30,7 @@ import { CartService } from './services/cart.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     CoreModule,
     MaterialModule,
     UserModule,

@@ -25,10 +25,15 @@
         padding: 16px;
         width: 300px;
         color: white;
-        background-color: red;
+        /* background-color: red; */
       }
 
       .button {
         display: flex;
         justify-content: flex-end;
+      }
+
+      .error-container {
+        margin-top: -15px; /* Adjust this value to move the error messages higher or lower */
+        padding-top: 0%;
       }

@@ -32,3 +32,10 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  .error-container {
+    margin-top: -15px; /* Adjust this value to move the error messages higher or lower */
+    padding-top: 0%;
+  }
+
+ 
