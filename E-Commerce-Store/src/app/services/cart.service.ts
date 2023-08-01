@@ -41,7 +41,7 @@ export class CartService {
   }
 
   removeQuantity(item: CartItem): void {
-    
+
     let itemForRemoval: CartItem | undefined;
 
     let filteredItems = this.cart.value.items.map((_item) => {
@@ -72,6 +72,4 @@ export class CartService {
     this.cart.next({ items: [] });
     this._snackBar.open('Cart is cleared.', 'Ok', { duration: 3000 })
   }
-
-
 }

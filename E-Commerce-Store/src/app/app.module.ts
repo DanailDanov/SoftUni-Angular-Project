@@ -14,6 +14,7 @@ import { ProductBoxComponent } from './features/product-box/product-box.componen
 import { CartComponent } from './features/cart/cart.component';
 import { CartService } from './services/cart.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieInterceptorProvider } from './app.interceptor';
 
 
 
@@ -36,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     UserModule,
     AppRoutingModule,
   ],
-  providers: [CartService],
+  providers: [CartService, CookieInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

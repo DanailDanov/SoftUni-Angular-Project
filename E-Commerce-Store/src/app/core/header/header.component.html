@@ -21,19 +21,23 @@
     </mat-menu>
 
     <mat-menu #userMenu="matMenu" xPosition="before">
-        <button routerLink="/login" mat-menu-item>
-            <mat-icon>login</mat-icon>
-            Login
-        </button>
-        <button routerLink="/register" mat-menu-item>
-            <mat-icon>app_registration</mat-icon>
-           Register
-        </button>
-        <!--TODO-->
-        <button routerLink="/logout" mat-menu-item>
-            <mat-icon>logout</mat-icon>
-            Logout
-        </button>
+        <div *ngIf="!isLoggedin">
+            <button  routerLink="/login" mat-menu-item>
+                <mat-icon>login</mat-icon>
+                Login
+            </button>
+            <button routerLink="/register" mat-menu-item>
+                <mat-icon>app_registration</mat-icon>
+               Register
+            </button>
+        </div>
+        <div  *ngIf="isLoggedin">
+             <!--TODO-->
+            <button (click)="logout()" mat-menu-item>
+                <mat-icon>logout</mat-icon>
+                Logout
+            </button>
+        </div>
     </mat-menu>
 
     <mat-menu #menu="matMenu">
