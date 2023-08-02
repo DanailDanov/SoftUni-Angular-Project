@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/types/user';
 
 @Component({
   selector: 'app-authenticate',
@@ -10,6 +11,7 @@ export class AuthenticateComponent implements OnInit {
 
   isAuth = false;
   // errMessage!: string;
+  user: User | undefined
 
   constructor(private userService: UserService) { }
 

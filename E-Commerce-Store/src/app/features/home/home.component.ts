@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { Product } from 'src/app/types/product';
+import { ROWS_HEIGHT } from '../constants';
 
 
-const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,8 +14,8 @@ export class HomeComponent {
 
   cols = 3;
   category: string | undefined;
-  rowHeight = ROWS_HEIGHT[this.cols]
-;
+  rowHeight = ROWS_HEIGHT[this.cols];
+  
   onColumnsCountChange(colsNum: number): void {
     this.cols = colsNum;
     this.rowHeight = ROWS_HEIGHT[this.cols];
@@ -25,7 +26,6 @@ export class HomeComponent {
   }
 
   constructor(private cartService: CartService) {};
-
 
   onAddToCart(product: Product) : void {
     this.cartService.addToCart({

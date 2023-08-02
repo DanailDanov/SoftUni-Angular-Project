@@ -1,23 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { ADMIN_AUTHORIZATION } from 'src/app/features/constants';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { Cart, CartItem } from 'src/app/types/cart';
+import { User } from 'src/app/types/user';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   private _cart: Cart = { items: [] };
 
   errMessage!: string;
-  subscription!: Subscription;
+  userSubscription!: Subscription;
 
   adminAuthorization = ADMIN_AUTHORIZATION;
+
+  user: User | undefined;
 
   itemsQuantity = 0;
 
@@ -44,6 +47,14 @@ export class HeaderComponent {
     private router: Router
   ) { }
 
+  ngOnInit(): void {
+    this.userSubscription = this.userService.user$.subscribe((user) => {
+      this.user = user;
+      console.log(this.user);
+    });
+  }
+
+
   logout(): void {
     this.userService.logout().subscribe({
       next: () => {
@@ -59,5 +70,9 @@ export class HeaderComponent {
 
   onClearCart(): void {
     this.cartService.clearCart();
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 }

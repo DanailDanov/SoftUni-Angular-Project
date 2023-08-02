@@ -1,16 +1,20 @@
 <mat-toolbar class="mx-auto  border-x justify-between">
     <a routerLink="/home" class="italic">Magnum Furniture</a>
-    <div>
-        <button mat-icon-button [matMenuTriggerFor]="settingsMenu">
-            <mat-icon>settings</mat-icon>
-        </button>
-        <button mat-icon-button [matMenuTriggerFor]="userMenu">
-            <mat-icon>person</mat-icon>
-        </button>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon [matBadge]="itemsQuantity" [matBadgeHidden]="!itemsQuantity"
-                matBadgeColor="warn">shopping_cart</mat-icon>
-        </button>
+    <div class="buttons-container">
+        <div *ngIf="user">
+            <button *ngIf="user._id === adminAuthorization" mat-icon-button [matMenuTriggerFor]="settingsMenu">
+                <mat-icon>settings</mat-icon>
+            </button>
+        </div>
+        <div>
+            <button mat-icon-button [matMenuTriggerFor]="userMenu">
+                <mat-icon>person</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon [matBadge]="itemsQuantity" [matBadgeHidden]="!itemsQuantity"
+                    matBadgeColor="warn">shopping_cart</mat-icon>
+            </button>
+        </div>
     </div>
 
     <mat-menu #settingsMenu="matMenu" xPosition="before">
@@ -22,17 +26,17 @@
 
     <mat-menu #userMenu="matMenu" xPosition="before">
         <div *ngIf="!isLoggedin">
-            <button  routerLink="/login" mat-menu-item>
+            <button routerLink="/login" mat-menu-item>
                 <mat-icon>login</mat-icon>
                 Login
             </button>
             <button routerLink="/register" mat-menu-item>
                 <mat-icon>app_registration</mat-icon>
-               Register
+                Register
             </button>
         </div>
-        <div  *ngIf="isLoggedin">
-             <!--TODO-->
+        <div *ngIf="isLoggedin">
+            <!--TODO-->
             <button (click)="logout()" mat-menu-item>
                 <mat-icon>logout</mat-icon>
                 Logout
