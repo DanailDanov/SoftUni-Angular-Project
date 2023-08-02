@@ -36,13 +36,14 @@ function getTheme(req, res, next) {
 }
 
 function createTheme(req, res, next) {
-    const { themeName, postText } = req.body;
+    const { title, price, category, image, description } = req.body;
     const { _id: userId } = req.user;
 
-    themeModel.create({ themeName, userId, subscribers: [userId] })
+    themeModel.create({ title, price, category, image, description })
         .then(theme => {
-            newPost(postText, userId, theme._id)
-                .then(([_, updatedTheme]) => res.status(200).json(updatedTheme))
+            // newPost(postText, userId, theme._id)
+            //     .then(([_, updatedTheme]) => res.status(200).json(updatedTheme))
+            res.json(theme)
         })
         .catch(next);
 }

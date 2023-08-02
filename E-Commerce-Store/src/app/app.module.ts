@@ -15,6 +15,8 @@ import { CartComponent } from './features/cart/cart.component';
 import { CartService } from './services/cart.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieInterceptorProvider } from './app.interceptor';
+import { ProductCreateComponent } from './features/product-create/product-create.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -26,12 +28,13 @@ import { CookieInterceptorProvider } from './app.interceptor';
     FiltersComponent,
     ProductBoxComponent,
     CartComponent,
-    
+    ProductCreateComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
     CoreModule,
     MaterialModule,
     UserModule,

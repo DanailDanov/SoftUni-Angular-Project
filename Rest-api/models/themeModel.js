@@ -2,22 +2,26 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
 
 const themeSchema = new mongoose.Schema({
-    themeName: {
+    title: {
         type: String,
         required: true
     },
-    subscribers: [{
-        type: ObjectId,
-        ref: "User"
-    }],
-    userId: {
-        type: ObjectId,
-        ref: "User"
+    price: {
+        type: Number,
+        required: true
     },
-    posts: [{
-        type: ObjectId,
-        ref: "Post"
-    }],
-}, { timestamps: { createdAt: 'created_at' } });
+    category: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+});
 
 module.exports = mongoose.model('Theme', themeSchema);
