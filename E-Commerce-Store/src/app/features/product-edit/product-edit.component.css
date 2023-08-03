@@ -1,0 +1,39 @@
+:host {
+    display: flex;
+    justify-content: center;
+    /* margin: 100px 0px; */
+    margin-top: 30px;
+  }
+
+  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+    /* padding: 5px; */
+  }
+
+  mat-card-title {
+    padding: 8px;
+  }
+
+  .error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+  }
+
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .error-container {
+    margin-top: -15px; /* Adjust this value to move the error messages higher or lower */
+    padding-top: 0%;
+  }

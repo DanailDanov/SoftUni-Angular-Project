@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   errMesagge!: string;
 
-  products:  Array<Product> | undefined;
+  products: Array<Product> | undefined;
   // sort = 'desc';
   // count = '12';
 
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.categorySubscription = this.apiService.getThemesCategory(this.category).subscribe({
       next: (_products) => {
         this.products = _products
-        console.log(this.products);
+        // console.log(this.products);
       },
       error: (err) => {
         this.errMesagge = err.error.message
@@ -81,6 +81,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.productsSubscription) {
       this.productsSubscription.unsubscribe();
+    }
+
+    if (this.categorySubscription) {
+      this.categorySubscription.unsubscribe();
     }
   }
 }

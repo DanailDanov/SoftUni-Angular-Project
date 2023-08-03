@@ -1,0 +1,83 @@
+<mat-card>
+    <mat-card-title>Edit Product</mat-card-title>
+    <mat-card-content>
+        <form #editForm="ngForm" (ngSubmit)="editSubmit(editForm)">
+            <p>
+                <mat-form-field>
+                    <mat-label>Enter your title</mat-label>
+                    <input matInput type="text" placeholder="Enter your title" name="title" ngModel
+                        #inputTitle="ngModel" required />
+                    <mat-error *ngIf="inputTitle.touched">
+                        <div class="error-container">
+                            <p *ngIf="inputTitle.errors?.['required']">
+                                Title is required!
+                            </p>
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Enter your price" name="price" ngModel
+                        #inputPrice="ngModel" required />
+                    <mat-error *ngIf="inputPrice.touched">
+                        <div class="error-container">
+                            <p *ngIf="inputPrice.errors?.['required']">
+                                Price is required!
+                            </p>
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Enter Product Category" name="category" ngModel
+                        #inputCategory="ngModel" required />
+                    <mat-error *ngIf="inputCategory.touched">
+                        <div class="error-container">
+                            <p *ngIf="inputCategory.errors?.['required']">
+                                Category is required!
+                            </p>
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Enter Product ImageURL" name="image" ngModel
+                        #inputImage="ngModel" required />
+                    <mat-error *ngIf="inputImage.touched">
+                        <div class="error-container">
+                            <p *ngIf="inputImage.errors?.['required']">
+                                ImageURL is required!
+                            </p>
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field>
+                    <textarea matInput type="text" placeholder="Enter Product Description" name="description" ngModel #inputDescription="ngModel" required></textarea>
+                    <!-- <input type="text" matInput placeholder="Enter Product Description" name="description" ngModel
+                        #inputDescription="ngModel" required /> -->
+                    <mat-error *ngIf="inputDescription.touched">
+                        <div class="error-container">
+                            <p *ngIf="inputDescription.errors?.['required']">
+                                Description is required!
+                            </p>
+                        </div>
+                    </mat-error>
+                </mat-form-field>   
+            </p>
+
+            <div class="button">
+                <button type="submit" [disabled]="editForm.invalid"
+                    mat-button>Edit</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

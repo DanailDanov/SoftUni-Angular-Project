@@ -19,6 +19,7 @@ import { ProductCreateComponent } from './features/product-create/product-create
 import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { ApiService } from './services/api.service';
+import { ProductEditComponent } from './features/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ApiService } from './services/api.service';
     ProductBoxComponent,
     CartComponent,
     ProductCreateComponent,
+    ProductEditComponent,
   ],
   imports: [
     BrowserModule,
