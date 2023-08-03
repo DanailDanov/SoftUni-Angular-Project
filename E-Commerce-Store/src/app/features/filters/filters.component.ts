@@ -11,6 +11,8 @@ export class FiltersComponent {
   categories = ['Chair', 'Table'];
 
   onShowCategory(category: string) : void {
+    // console.log(category);
+    
     this.showCategory.emit(category);
   }
 }

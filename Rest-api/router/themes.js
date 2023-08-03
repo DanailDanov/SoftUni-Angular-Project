@@ -9,6 +9,9 @@ const { themeController, postController } = require('../controllers');
 router.get('/', themeController.getLatestsThemes);
 router.post('/', auth(), themeController.createTheme);
 
+//my route
+router.get('/category/:category', themeController.getThemesCategory);
+//
 router.get('/:themeId', themeController.getTheme);
 router.post('/:themeId', auth(), postController.createPost);
 router.put('/:themeId', auth(), themeController.subscribe);

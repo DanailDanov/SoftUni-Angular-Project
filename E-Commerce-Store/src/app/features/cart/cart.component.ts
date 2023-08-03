@@ -8,16 +8,18 @@ import { Cart, CartItem } from 'src/app/types/cart';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cart: Cart = {
-    items: [{
-      product: 'https://via.placeholder.com/150',
-      name: 'Athens',
-      price: 150,
-      quantity: 1,
-      id: 1,
-    }]
-  };
+  cart: Cart = { items: [] };
 
+  // {
+  //   items: [{
+  //     product: 'https://via.placeholder.com/150',
+  //     name: 'Athens',
+  //     price: 150,
+  //     quantity: 1,
+  //     _id: 1,
+  //   }]
+  // };
+  
   dataSource: Array<CartItem> = [];
 
   displayedColumns: Array<string> = [
@@ -35,7 +37,7 @@ export class CartComponent implements OnInit {
     this.cartService.cart.subscribe((_cart: Cart) => {
       this.cart = _cart;
       this.dataSource = this.cart.items;
-    })
+    });
   }
 
   getTotal(items: Array<CartItem>): number {
@@ -47,6 +49,7 @@ export class CartComponent implements OnInit {
   }
 
   onRemoveFromCart(item: CartItem) : void {
+    console.log(item);
     this.cartService.removeFromCart(item);
   }
 

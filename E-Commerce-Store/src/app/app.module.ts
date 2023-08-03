@@ -17,8 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CookieInterceptorProvider } from './app.interceptor';
 import { ProductCreateComponent } from './features/product-create/product-create.component';
 import { FormsModule } from '@angular/forms';
-
-
+import { UserService } from './services/user.service';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { FormsModule } from '@angular/forms';
     UserModule,
     AppRoutingModule,
   ],
-  providers: [CartService, CookieInterceptorProvider],
+  providers: [CartService, UserService, ApiService, CookieInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,10 +2,26 @@ const { themeModel } = require('../models');
 const { newPost } = require('./postController')
 
 function getThemes(req, res, next) {
-    themeModel.find()
+
+    // const { category } = req.body;
+
+    // if (category === 'chair') {
+    //     return themeModel.find({ category: category }).then(themes => res.json(themes)).catch(next);
+    // } else if (category === 'table') {
+    //     return themeModel.find({ category: category }).then(themes => res.json(themes)).catch(next);
+    // }
+
+    return themeModel.find()
         .populate('userId')
         .then(themes => res.json(themes))
         .catch(next);
+}
+
+//My route
+function getThemesCategory(req, res, next) {
+    const { category } = req.params;
+
+    themeModel.find({category: category}).then(themes => console.log( res.json(themes)))
 }
 
 function getLatestsThemes(req, res, next) {
@@ -26,11 +42,11 @@ function getTheme(req, res, next) {
 
     themeModel.findById(themeId)
         .populate({
-            path : 'posts',
-            populate : {
-              path : 'userId'
+            path: 'posts',
+            populate: {
+                path: 'userId'
             }
-          })
+        })
         .then(theme => res.json(theme))
         .catch(next);
 }
@@ -64,4 +80,5 @@ module.exports = {
     createTheme,
     getTheme,
     subscribe,
+    getThemesCategory,
 }
