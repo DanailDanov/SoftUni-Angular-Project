@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { ApiService } from './services/api.service';
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
+import { DeleteService } from './services/delete.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { ProductEditComponent } from './features/product-edit/product-edit.compo
     UserModule,
     AppRoutingModule,
   ],
-  providers: [CartService, UserService, ApiService, CookieInterceptorProvider],
+  providers: [CartService, UserService, ApiService, DeleteService, CookieInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

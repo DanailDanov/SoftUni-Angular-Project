@@ -18,6 +18,11 @@ router.put('/:themeId', auth(), themeController.subscribe);
 router.put('/:themeId/posts/:postId', auth(), postController.editPost);
 router.delete('/:themeId/posts/:postId', auth(), postController.deletePost);
 
+//my route 
+router.put('/edit/:productId', postController.editProduct);
+router.delete('/:productId', postController.deleteProduct);
+//
+
 // router.get('/my-trips/:id/reservations', auth(), themeController.getReservations);
 
 module.exports = router

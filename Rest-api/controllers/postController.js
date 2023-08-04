@@ -33,6 +33,26 @@ function createPost(req, res, next) {
         .catch(next);
 }
 
+function editProduct(req, res, next) {
+    const { productId } = req.params;
+
+    // console.log(productId);
+
+    const { title, price, category, image, description } = req.body;
+
+    themeModel.findByIdAndUpdate(productId, { title, price, category, image, description })
+        .then(updatedPost => {
+            if (updatedPost) {
+                res.status(200).json(updatedPost);
+            }
+            else {
+                res.status(401).json({ message: `Not allowed!` });
+            }
+        })
+        .catch(next);
+
+}
+
 function editPost(req, res, next) {
     const { postId } = req.params;
     const { postText } = req.body;
@@ -49,6 +69,14 @@ function editPost(req, res, next) {
             }
         })
         .catch(next);
+}
+
+function deleteProduct(req, res, next) {
+    const { productId } = req.params;
+
+    themeModel.findByIdAndDelete(productId)
+        .then(deleteProduct => res.json(deleteProduct))
+        .catch(next)
 }
 
 function deletePost(req, res, next) {
@@ -88,4 +116,6 @@ module.exports = {
     editPost,
     deletePost,
     like,
+    editProduct,
+    deleteProduct,
 }

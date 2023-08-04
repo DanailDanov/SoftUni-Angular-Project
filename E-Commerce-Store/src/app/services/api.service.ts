@@ -21,16 +21,17 @@ export class ApiService {
     return this.http.get<Array<Product>>(`${apiUrl}/themes`);
   }
 
-
-//   `${STORE_BASE_URL}/products${
-//     category ? '/category/' + category : ''
-//   }?sort=${sort}&limit=${limit}`
-// );
-
   getThemesCategory(category?: string) {
-    const {apiUrl} = environment;
+    const { apiUrl } = environment;
 
-    return this.http.get<Array<Product>>(`${apiUrl}/themes${category? '/category/' + category : ''}`);
+    return this.http.get<Array<Product>>(`${apiUrl}/themes${category ? '/category/' + category : ''}`);
   }
 
+  editProduct(productId: string, title: string, price: Number, category: string, image: string, description: string) {
+    return this.http.put(`/api/themes/edit/${productId}`, { title, price, category, image, description })
+  }
+
+  deleteProduct(productId:string) {
+    return this.http.delete(`/api/themes/${productId}`);
+  }
 }

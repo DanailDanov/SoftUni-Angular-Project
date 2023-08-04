@@ -19,7 +19,7 @@ export class CartService {
     const itemInCart = items.find((_item) => _item._id === item._id);
 
     if (itemInCart) {
-      itemInCart.quantity += 1
+      itemInCart.quantity += 1;
     } else {
       items.push(item);
     }
