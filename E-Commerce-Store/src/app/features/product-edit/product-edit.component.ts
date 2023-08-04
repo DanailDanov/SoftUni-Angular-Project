@@ -29,7 +29,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     this.editSubscription = this.apiService.getAllProducts().subscribe({
       next: (_products) => {
         this.product = _products.find((product) => product._id == this.productId);
-        console.log(this.product);
+        // console.log(this.product);
 
       },
       error: (err) => this.errMessage = err.error.message

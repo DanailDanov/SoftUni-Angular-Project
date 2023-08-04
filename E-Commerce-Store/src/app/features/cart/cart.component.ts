@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { loadStripe } from '@stripe/stripe-js';
+import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { Cart, CartItem } from 'src/app/types/cart';
 
@@ -7,19 +10,11 @@ import { Cart, CartItem } from 'src/app/types/cart';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   cart: Cart = { items: [] };
 
-  // {
-  //   items: [{
-  //     product: 'https://via.placeholder.com/150',
-  //     name: 'Athens',
-  //     price: 150,
-  //     quantity: 1,
-  //     _id: 1,
-  //   }]
-  // };
-  
+  subscription!: Subscription;
+
   dataSource: Array<CartItem> = [];
 
   displayedColumns: Array<string> = [
@@ -31,10 +26,10 @@ export class CartComponent implements OnInit {
     'action',
   ];
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.cartService.cart.subscribe((_cart: Cart) => {
+   this.subscription = this.cartService.cart.subscribe((_cart: Cart) => {
       this.cart = _cart;
       this.dataSource = this.cart.items;
     });
@@ -59,5 +54,20 @@ export class CartComponent implements OnInit {
 
   onRemoveQuantity(item: CartItem): void {
     this.cartService.removeQuantity(item);
+  }
+
+  onCheckout() {
+    this.http.post('/api/checkout', {items: this.cart.items}).subscribe(async(res:any) => {
+      let stripe = await loadStripe('pk_test_51NbNjYKmnZzSdyArHjxmhaUB4B7j5hrQrNmyo0ppk0PpYmrGwm0Ljin20utrb6SPcJZMomoPFs1EMSQossiiUZYU00kUzeDHDr');
+      stripe?.redirectToCheckout({
+        sessionId: res.id
+      })
+    })
+  }
+
+  ngOnDestroy(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
