@@ -5,6 +5,9 @@ import { CartComponent } from './features/cart/cart.component';
 import { ProductCreateComponent } from './features/product-create/product-create.component';
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
+import { AdminGuard } from './core/guards/admin.guard';
+import { AuthGuard } from './core/guards/auth.guard';
+
 
 const routes: Routes = [
   {
@@ -23,10 +26,12 @@ const routes: Routes = [
   {
     path: 'create',
     component: ProductCreateComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: 'edit/:productId',
     component: ProductEditComponent,
+    canActivate: [AdminGuard],
   },
   {
     path: '**',

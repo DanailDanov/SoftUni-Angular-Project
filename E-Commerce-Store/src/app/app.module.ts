@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { ApiService } from './services/api.service';
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
-import { DeleteService } from './services/delete.service';
+import { DeleteService } from './shared/popup/delete.service';
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { SharedModule } from './shared/shared.module';
 

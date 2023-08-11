@@ -4,7 +4,7 @@ import { Product } from 'src/app/types/product';
 import { User } from 'src/app/types/user';
 import { ADMIN_AUTHORIZATION } from '../constants';
 import { UserService } from 'src/app/services/user.service';
-import { DeleteService } from 'src/app/services/delete.service';
+import { DeleteService } from 'src/app/shared/popup/delete.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 // import { Location } from '@angular/common';
