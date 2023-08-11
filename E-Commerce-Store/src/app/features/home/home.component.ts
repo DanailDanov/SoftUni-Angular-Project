@@ -4,6 +4,7 @@ import { Product } from 'src/app/types/product';
 import { ROWS_HEIGHT } from '../constants';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -38,9 +39,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getCategoryProduct();
   }
 
-  constructor(private cartService: CartService, private apiService: ApiService) { };
+  constructor(private cartService: CartService, private apiService: ApiService, private titlePage: Title) { };
 
   ngOnInit(): void {
+    this.titlePage.setTitle('Home page');
     this.getProducts();
   }
 

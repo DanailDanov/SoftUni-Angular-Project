@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -11,11 +11,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   appEmailDomains = ALLOWED_DOMAINS_FOR_EMAIL;
   subscription!: Subscription;
-  errMessage!: string;
+  error!: string;
 
   constructor(
     private titlePage: Title,
@@ -33,16 +33,21 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const { email, password, rePassword } = form.value;
+    const { email, password, rePassword, tel } = form.value;
 
     this.subscription = this.userService
-      .register(email, password, rePassword)
+      .register(email, password, rePassword, tel)
       .subscribe({
         next: () => {
           this.router.navigate(['/'])
         },
-        error: (err) => this.errMessage = err.error.message
+        error: (err) => this.error = err.error.message
       });
   }
 
+  ngOnDestroy(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

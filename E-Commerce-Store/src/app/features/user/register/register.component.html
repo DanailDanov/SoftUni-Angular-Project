@@ -22,6 +22,24 @@
 
       <p>
         <mat-form-field>
+          <input type="text" matInput placeholder="Enter your number" name="tel" ngModel #inputTel="ngModel"
+            required minlength="10" />
+          <mat-error *ngIf="inputTel.touched">
+            <div class="error-container">
+              <p *ngIf="inputTel.errors?.['required']">
+                Phone number is required!
+              </p>
+              <p style="font-size: 11px; line-height: 14px;" *ngIf="inputTel.errors?.['minlength']">
+                Phone number must be at least
+                {{inputTel.errors?.['minlength']['requiredLength']}} characters!
+              </p>
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
           <input type="password" matInput placeholder="Password" name="password" ngModel #inputPassword="ngModel"
             required minlength="4" />
           <mat-error *ngIf="inputPassword.touched">
@@ -65,10 +83,15 @@
         </mat-error>
       </div>
 
-      <div  class="button">
-        <button type="submit" [disabled]="registerForm.invalid || inputPassword.value != inputRePassword.value" mat-button>Register</button>
+      <div class="button">
+        <button type="submit" [disabled]="registerForm.invalid || inputPassword.value != inputRePassword.value"
+          mat-button>Register</button>
       </div>
 
+      <!--Server error-->
+      <div class="text-center text-red-600">
+        <p *ngIf="error">{{error}}</p>
+      </div>
 
       <div class="text-center">
         <p class="mb-0 mr-2 mt-3">Have an account ?

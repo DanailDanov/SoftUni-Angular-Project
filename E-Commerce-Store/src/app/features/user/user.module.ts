@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserRoutingModule } from './user-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmailDirective } from './validators/email.directive';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -14,6 +15,7 @@ import { EmailDirective } from './validators/email.directive';
     LoginComponent,
     RegisterComponent,
     EmailDirective,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

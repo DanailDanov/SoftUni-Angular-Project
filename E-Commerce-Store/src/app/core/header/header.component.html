@@ -36,7 +36,10 @@
             </button>
         </div>
         <div *ngIf="isLoggedin">
-            <!--TODO-->
+            <button mat-menu-item routerLink="/profile">
+                <mat-icon>manage_accounts</mat-icon>
+                {{user?.email}}
+            </button>
             <button (click)="logout()" mat-menu-item>
                 <mat-icon>logout</mat-icon>
                 Logout

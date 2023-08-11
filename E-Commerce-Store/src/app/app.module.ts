@@ -21,6 +21,7 @@ import { UserService } from './services/user.service';
 import { ApiService } from './services/api.service';
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
 import { DeleteService } from './services/delete.service';
+import { NotFoundComponent } from './features/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DeleteService } from './services/delete.service';
     CartComponent,
     ProductCreateComponent,
     ProductEditComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ export class UserService implements OnDestroy {
 
   private user$$ = new BehaviorSubject<User | undefined>(undefined);
   public user$ = this.user$$.asObservable();
+  
   subscription: Subscription;
 
   user: User | undefined;
@@ -24,20 +25,21 @@ export class UserService implements OnDestroy {
     })
   }
 
-
   getProfile() {
     return this.http
       .get<User>('/api/users/profile', {})
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  // getUser(): Observable<User> {
-  //   return this.http.get<User>('/api/users/profile', {});
-  // }
-
-  register(email: string, password: string, rePassword: string) {
+  updateUserProfile( email: string, tel: string) {
     return this.http
-      .post<User>('/api/register', { email, password })
+      .put<User>('/api/users/profile', {  email, tel })
+      .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  register(email: string, password: string, rePassword: string, tel: string) {
+    return this.http
+      .post<User>('/api/register', { email, password, tel})
       .pipe(tap((user) => this.user$$.next(user)))
   }
 
@@ -46,7 +48,6 @@ export class UserService implements OnDestroy {
       .post<User>('/api/login', { email, password })
       .pipe(tap((user) => this.user$$.next(user)));
   }
-
 
   logout() {
     return this.http

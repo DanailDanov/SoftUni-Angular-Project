@@ -1,0 +1,67 @@
+<div>
+    <div class="userProfile" *ngIf="user">
+        <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" alt="">
+        <h3>User info:</h3>
+    
+        <ng-container *ngIf="!isEdit">
+            <div class="detail">
+                <p>Email: {{user.email}}</p>
+            </div>
+            <div class="detail">
+                <p>Phone: {{user.tel}}</p>
+            </div>
+
+            <button mat-raised-button color="warn" class="edit-button" (click)="toggleEdit()">Edit</button>
+        </ng-container>
+
+        <ng-container *ngIf="isEdit">
+            <form #updateProfileForm="ngForm" (ngSubmit)="updateProfile(updateProfileForm)">
+               
+                <!-- email input -->
+                <div class="flex">
+                  <p>Email:</p>
+                  <input class="border border-black rounded-lg p-1" type="email" id="email" 
+                  name="email" ngModel #inputEmail="ngModel"  [(ngModel)]="user.email" required [appEmail]="appEmailDomains"/>
+                </div>
+        
+                <!-- email validations -->
+                <mat-error *ngIf="inputEmail.touched">
+                    <div>
+                        <p style="font-size: 13px; line-height: 20px" *ngIf="inputEmail?.errors?.['required']">
+                            Email is required!
+                          </p>
+                          <p
+                          style="font-size: 13px; line-height: 14px;"
+                            *ngIf="inputEmail?.errors?.['emailValidator']"
+                          >
+                            Email is not valid!
+                          </p>
+
+                    </div>
+                </mat-error>
+        
+                <!-- telephone input -->
+                <div class="flex">
+                  <p>Phone:</p>
+                  <div>
+                    <input type="text" id="tel" class="border border-black rounded-lg p-1" name="tel" 
+                    [(ngModel)]="user.tel" ngModel #inputTel="ngModel" required minlength="10"/>
+                  </div>
+                </div>
+        
+                <mat-error *ngIf="inputTel.touched">
+                    <p style="font-size: 13px; line-height: 14px;" class="error" *ngIf="inputTel?.errors?.['required']">
+                      Phone number is required!
+                    </p>
+                    <p style="font-size: 13px; line-height: 14px;" *ngIf="inputTel.errors?.['minlength']">
+                        Phone number must be at least
+                        {{inputTel.errors?.['minlength']['requiredLength']}} characters!
+                      </p>
+                  </mat-error>
+                <!-- ACTIONS -->
+                <!-- <button class="m-3" mat-raised-button color="warn">Cancel</button> -->
+                <button style="margin: 5px;" type="submit" [disabled]="updateProfileForm.invalid" mat-raised-button color="primary">Save</button>
+            </form>
+        </ng-container>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { HomeComponent } from './features/home/home.component';
 import { CartComponent } from './features/cart/cart.component';
 import { ProductCreateComponent } from './features/product-create/product-create.component';
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
+import { NotFoundComponent } from './features/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'edit/:productId',
     component: ProductEditComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   },
 ];
 

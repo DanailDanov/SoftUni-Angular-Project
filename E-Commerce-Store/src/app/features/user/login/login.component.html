@@ -41,8 +41,14 @@
 </p>
 
 <div class="button">
-  <button type="submit" [disabled]="loginForm.invalid" mat-button>Login</button>
+  <button type="submit" [disabled]="loginForm.invalid" mat-button>Login</button> 
 </div>
+
+<!--Server error-->
+<div class="text-center text-red-600">
+  <p *ngIf="error">{{error}}</p>
+</div>
+
 <div class="text-center">
   <p class="mb-0 mr-2 mt-3">Don't have an account ?
     <a class="text-cyan-600 " routerLink="/register">Register</a>

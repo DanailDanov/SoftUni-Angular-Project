@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 import { Cart, CartItem } from 'src/app/types/cart';
 
 @Component({
@@ -26,7 +27,10 @@ export class CartComponent implements OnInit, OnDestroy {
     'action',
   ];
 
-  constructor(private cartService: CartService, private http: HttpClient) { }
+  get isLoggedin(): boolean {
+    return this.userService.isLogged;
+  }
+  constructor(private cartService: CartService, private http: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
    this.subscription = this.cartService.cart.subscribe((_cart: Cart) => {
