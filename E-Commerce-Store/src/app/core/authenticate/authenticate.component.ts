@@ -10,9 +10,7 @@ import { User } from 'src/app/types/user';
 export class AuthenticateComponent implements OnInit {
 
   isAuth = false;
-  // errMessage!: string;
-  user: User | undefined
-
+ 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {

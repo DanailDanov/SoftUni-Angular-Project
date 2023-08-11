@@ -5,6 +5,7 @@ import { MaterialModule } from '../material/material.module';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,6 +18,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
   imports: [
     CommonModule,
     MaterialModule,
+    SharedModule,
     RouterModule,
   ],
   exports: [HeaderComponent, FooterComponent, AuthenticateComponent],
