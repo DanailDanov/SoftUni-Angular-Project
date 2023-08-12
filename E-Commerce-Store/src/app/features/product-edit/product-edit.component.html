@@ -4,9 +4,9 @@
         <form #editForm="ngForm" (ngSubmit)="editSubmit(editForm)">
             <p>
                 <mat-form-field>
-                    
-                    <input matInput type="text"  name="title" ngModel
-                        #inputTitle="ngModel" required  [(ngModel)]="product.title"/>
+
+                    <input matInput type="text" name="title" ngModel #inputTitle="ngModel" required
+                        [(ngModel)]="product.title" />
                     <mat-error *ngIf="inputTitle.touched">
                         <div class="error-container">
                             <p *ngIf="inputTitle.errors?.['required']">
@@ -19,8 +19,8 @@
 
             <p>
                 <mat-form-field>
-                    <input type="text" matInput  name="price" ngModel
-                        #inputPrice="ngModel" required  [(ngModel)]="product.price"/>
+                    <input type="text" matInput name="price" ngModel #inputPrice="ngModel" required
+                        [(ngModel)]="product.price" />
                     <mat-error *ngIf="inputPrice.touched">
                         <div class="error-container">
                             <p *ngIf="inputPrice.errors?.['required']">
@@ -33,8 +33,8 @@
 
             <p>
                 <mat-form-field>
-                    <input type="text" matInput  name="category" ngModel
-                        #inputCategory="ngModel" required  [(ngModel)]="product.category"/>
+                    <input type="text" matInput name="category" ngModel #inputCategory="ngModel" required
+                        [(ngModel)]="product.category" />
                     <mat-error *ngIf="inputCategory.touched">
                         <div class="error-container">
                             <p *ngIf="inputCategory.errors?.['required']">
@@ -47,8 +47,8 @@
 
             <p>
                 <mat-form-field>
-                    <input type="text" matInput  name="image" ngModel
-                        #inputImage="ngModel" required [(ngModel)]="product.image"/>
+                    <input type="text" matInput name="image" ngModel #inputImage="ngModel" required
+                        [(ngModel)]="product.image" />
                     <mat-error *ngIf="inputImage.touched">
                         <div class="error-container">
                             <p *ngIf="inputImage.errors?.['required']">
@@ -61,7 +61,8 @@
 
             <p>
                 <mat-form-field>
-                    <textarea matInput type="text"  name="description" ngModel #inputDescription="ngModel" required [(ngModel)]="product.description"></textarea>
+                    <textarea matInput type="text" name="description" ngModel #inputDescription="ngModel" required
+                        [(ngModel)]="product.description"></textarea>
                     <!-- <input type="text" matInput placeholder="Enter Product Description" name="description" ngModel
                         #inputDescription="ngModel" required /> -->
                     <mat-error *ngIf="inputDescription.touched">
@@ -71,12 +72,15 @@
                             </p>
                         </div>
                     </mat-error>
-                </mat-form-field>   
+                </mat-form-field>
             </p>
 
             <div class="button">
-                <button type="submit" [disabled]="editForm.invalid"
-                    mat-button>Edit</button>
+                <button type="submit" [disabled]="editForm.invalid" mat-button>Edit</button>
+            </div>
+            <!-- Server error-->
+            <div class="text-center text-red-600">
+                <p *ngIf="error">{{error}}</p>
             </div>
         </form>
     </mat-card-content>

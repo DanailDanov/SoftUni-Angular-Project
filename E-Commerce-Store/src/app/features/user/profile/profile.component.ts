@@ -16,9 +16,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user: User | undefined;
   userSubscription!: Subscription
 
+  error!: string;
+
   appEmailDomains = ALLOWED_DOMAINS_FOR_EMAIL;
 
   isEdit: boolean = false;
+
+  profileDetails = {
+    email: '',
+    tel: '',
+  };
 
   constructor(
     private titlePage: Title,
@@ -32,7 +39,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       next: (_user) => {
         this.user = _user;
       },
-      error: () => {},
+      error: (err) => this.error = err.error.message
     })
   }
 
@@ -45,10 +52,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const {email, tel} = form.value;
+    this.profileDetails = { ...form.value }
 
-    this.userService.updateUserProfile(email, tel).subscribe(() => {
-      this.toggleEdit();
+    const { email, tel } = this.profileDetails;
+
+    this.userService.updateUserProfile(email, tel).subscribe({
+
+      next: () => {
+        this.toggleEdit();
+      },
+      error: (err) => {
+        this.error = err.error.err.errors.tel.message
+        
+      }
+
     });
   }
 

@@ -19,12 +19,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   category: string | undefined;
   rowHeight = ROWS_HEIGHT[this.cols];
 
-  errMesagge!: string;
+  error!: string;
 
   products: Array<Product> | undefined;
-  // sort = 'desc';
-  // count = '12';
-
+  
   productsSubscription!: Subscription;
 
   categorySubscription!: Subscription
@@ -53,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         // console.log(this.products);
       },
       error: (err) => {
-        this.errMesagge = err.error.message
+        this.error = err.error.message
       }
     })
   }
@@ -65,7 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         // console.log(this.products);
       },
       error: (err) => {
-        this.errMesagge = err.error.message
+        this.error = err.error.message
       }
     })
   }

@@ -14,13 +14,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        minlength:[10, 'Phone number should be at least 4 characters'],
+        minlength: [10, 'Phone number should be at least 4 characters'],
         validate: {
-            validator: function (v) {
-                return /[0-9]+/g.test(v);
-            },
-            message: props => `${props.value} must contains only digits!`
+            validator: function(v) {
+                return /^[0-9]+$/.test(v);
+              },
+              message: props => `${props.value} is not a valid phone number!`
         },
+      
     },
     password: {
         type: String,

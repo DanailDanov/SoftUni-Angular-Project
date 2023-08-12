@@ -14,7 +14,7 @@ import { Product } from 'src/app/types/product';
 export class ProductCreateComponent implements OnInit, OnDestroy {
   product: Product | undefined;
   subscription!: Subscription;
-  errMessage!: string;
+  error!: string;
 
   constructor(
     private titlePage: Title,
@@ -43,7 +43,7 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
       next: () => {
         this.router.navigate(['/'])
       },
-      error: (err) => this.errMessage = err.error.message
+      error: (err) => this.error = err.error.message
     })
   }
 

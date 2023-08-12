@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         next: () => {
           this.router.navigate(['/'])
         },
-        error: (err) => this.error = err.error.message
+        error: (err) =>  this.error = err.error.err.errors.tel.message
       });
   }
 

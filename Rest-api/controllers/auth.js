@@ -102,7 +102,7 @@ function editProfileInfo(req, res, next) {
 
     userModel.findOneAndUpdate({ _id: userId }, { tel, username, email }, { runValidators: true, new: true })
         .then(x => { res.status(200).json(x) })
-        .catch(next);
+        .catch(next)
 }
 
 module.exports = {

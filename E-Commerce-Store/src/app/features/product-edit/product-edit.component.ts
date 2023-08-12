@@ -14,7 +14,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
   productId!: string;
   product: Product | undefined;
-  errMessage!: string;
+  error!: string;
   editSubscription!: Subscription
 
   constructor(
@@ -32,7 +32,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
         // console.log(this.product);
 
       },
-      error: (err) => this.errMessage = err.error.message
+      error: (err) => this.error = err.error.message
     })
   }
 
@@ -45,13 +45,13 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
     price = Number(price);
     
-    console.log(title, price, category, image, description);
+    // console.log(title, price, category, image, description);
     
     this.editSubscription = this.apiService.editProduct(this.productId, title, price, category, image, description).subscribe({
       next: () => {
         this.router.navigate(['/'])
       },
-      error: (err) => this.errMessage = err.error.message
+      error: (err) => this.error = err.error.message
     })
   }
 

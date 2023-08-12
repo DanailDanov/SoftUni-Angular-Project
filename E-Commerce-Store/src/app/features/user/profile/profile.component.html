@@ -36,7 +36,6 @@
                           >
                             Email is not valid!
                           </p>
-
                     </div>
                 </mat-error>
         
@@ -58,9 +57,14 @@
                         {{inputTel.errors?.['minlength']['requiredLength']}} characters!
                       </p>
                   </mat-error>
+                  <div class="text-center text-red-600">
+                    <p *ngIf="error">{{error}}</p>
+                  </div>
                 <!-- ACTIONS -->
                 <!-- <button class="m-3" mat-raised-button color="warn">Cancel</button> -->
                 <button style="margin: 5px;" type="submit" [disabled]="updateProfileForm.invalid" mat-raised-button color="primary">Save</button>
+
+                
             </form>
         </ng-container>
     </div>

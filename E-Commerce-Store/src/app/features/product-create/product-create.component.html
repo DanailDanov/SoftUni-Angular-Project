@@ -61,7 +61,8 @@
 
             <p>
                 <mat-form-field>
-                    <textarea matInput type="text" placeholder="Enter Product Description" name="description" ngModel #inputDescription="ngModel" required></textarea>
+                    <textarea matInput type="text" placeholder="Enter Product Description" name="description" ngModel
+                        #inputDescription="ngModel" required></textarea>
                     <!-- <input type="text" matInput placeholder="Enter Product Description" name="description" ngModel
                         #inputDescription="ngModel" required /> -->
                     <mat-error *ngIf="inputDescription.touched">
@@ -71,12 +72,15 @@
                             </p>
                         </div>
                     </mat-error>
-                </mat-form-field>   
+                </mat-form-field>
             </p>
 
             <div class="button">
-                <button type="submit" [disabled]="createForm.invalid"
-                    mat-button>Create</button>
+                <button type="submit" [disabled]="createForm.invalid" mat-button>Create</button>
+            </div>
+            <!-- Server error-->
+            <div class="text-center text-red-600">
+                <p *ngIf="error">{{error}}</p>
             </div>
         </form>
     </mat-card-content>
