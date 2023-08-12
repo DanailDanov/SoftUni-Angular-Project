@@ -26,17 +26,17 @@
 
     <mat-menu #userMenu="matMenu" xPosition="before">
         <div *ngIf="!isLoggedin">
-            <button routerLink="/login" mat-menu-item>
+            <button routerLink="/auth/login" mat-menu-item>
                 <mat-icon>login</mat-icon>
                 Login
             </button>
-            <button routerLink="/register" mat-menu-item>
+            <button routerLink="/auth/register" mat-menu-item>
                 <mat-icon>app_registration</mat-icon>
                 Register
             </button>
         </div>
         <div *ngIf="isLoggedin">
-            <button mat-menu-item routerLink="/profile">
+            <button mat-menu-item routerLink="/auth/profile">
                 <mat-icon>manage_accounts</mat-icon>
                 {{user?.email}}
             </button>

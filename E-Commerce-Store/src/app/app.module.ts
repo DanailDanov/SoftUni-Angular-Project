@@ -44,7 +44,6 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     MaterialModule,
     SharedModule,
-    UserModule,
     AppRoutingModule,
   ],
   providers: [CartService, UserService, ApiService, DeleteService, CookieInterceptorProvider],

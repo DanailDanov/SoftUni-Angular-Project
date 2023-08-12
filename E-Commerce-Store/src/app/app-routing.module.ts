@@ -32,6 +32,10 @@ const routes: Routes = [
     canActivate: [AdminGuard],
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./features/user/user.module').then((m) => m.UserModule)
+  },
+  {
     path: '**',
     component: NotFoundComponent
   },
