@@ -1,10 +1,3 @@
-<!-- # SoftUni-Angular-Project
-The final project for the Angular course at Software University.
-
-https://danaildanov.github.io/SoftUni-Angular-Project/ -->
-
-
-
 # Magnum Furniture
 
 Magnum Furniture is my final project for the Angular course at SoftUni.The application is created with SoftUni practice server for backend and Angular for the frontend.
