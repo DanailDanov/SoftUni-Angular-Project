@@ -31,7 +31,7 @@ This is an E-Commerce Store web application. It provides basic authentication, w
  - Admin Authorization: An admin is an individual with full access to the site.
    Admins have the authority to create, edit, and delete products.
 
-# Demo User
+# Demo Users
 
  * Admin with full access: 
     - Email: danail@gmail.com
@@ -45,5 +45,14 @@ This is an E-Commerce Store web application. It provides basic authentication, w
 
 # Deployment
 
+ * Project URL: TODO!
+ * Used: 
+    - GitHub Pages
+
+# Utilized Additional Libraries
+ 
+ * Angular Material 
+ * Tailwind
+ * Stripe
 
     
