@@ -53,6 +53,6 @@ This is an E-Commerce Store web application. It provides basic authentication, w
  
  * Angular Material 
  * Tailwind
- * Stripe
+ * Stripe - payments infrastructure for the internet
 
     
