@@ -36,12 +36,6 @@ This is an E-Commerce Store web application. It provides basic authentication, w
     - Email: plamen.danov@gmail.com
     - Password: 123456
 
-# Deployment
-
- * Project URL: TODO!
- * Used: 
-    - GitHub Pages
-
 # Utilized Additional Libraries
  
  * Angular Material 
