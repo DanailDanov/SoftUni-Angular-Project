@@ -6,8 +6,6 @@ import { ProductCreateComponent } from './features/product-create/product-create
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { AdminGuard } from './core/guards/admin.guard';
-import { AuthGuard } from './core/guards/auth.guard';
-
 
 const routes: Routes = [
   {

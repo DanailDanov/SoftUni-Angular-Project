@@ -28,11 +28,11 @@ export class CartService {
     this.cart.next({ items });
     this._snackBar.open('1 item added to cart', 'Ok', { duration: 3000 })
     // console.log(this.cart.value);
-    
+
   }
 
-  removeFromCart(item: CartItem, update = true): Array<CartItem > {
-   
+  removeFromCart(item: CartItem, update = true): Array<CartItem> {
+
     const filteredItems = this.cart.value.items.filter(
       (_item) => _item._id !== item._id
     );
@@ -43,7 +43,7 @@ export class CartService {
     }
 
     // console.log(filteredItems);
-    
+
     return filteredItems;
   }
 
@@ -60,9 +60,9 @@ export class CartService {
       }
 
       return _item;
-    }); 
+    });
 
-    if (itemForRemoval) { 
+    if (itemForRemoval) {
       filteredItems = this.removeFromCart(itemForRemoval, false);
     }
 
@@ -79,8 +79,4 @@ export class CartService {
     this.cart.next({ items: [] });
     this._snackBar.open('Cart is cleared.', 'Ok', { duration: 3000 })
   }
-
-  // checkout(items: CartItem[]) {
-  //   return this.http.post('/api/checkout', {items});
-  // }
 }

@@ -1,5 +1,14 @@
-<div class="page-content">
-    <mat-drawer-container [autosize]="true" class="min-h-full mx-auto  border-x">
+<div *ngIf="isLoading">
+    <app-loader />
+</div>
+
+<div  *ngIf="!isLoading" class="page-content">
+        <!--Server error-->
+    <div class="text-red-500 text-sm mt-1" *ngIf="error">
+        {{ error }}
+    </div>
+    
+    <mat-drawer-container [autosize]="true" class="min-h-full mx-auto  border-x">    
         <mat-drawer mode="side" opened class="p-6">
             <app-filters (showCategory)="onShowCategory($event)" />
         </mat-drawer>

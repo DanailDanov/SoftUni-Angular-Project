@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { loadStripe } from '@stripe/stripe-js';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
@@ -27,15 +28,38 @@ export class CartComponent implements OnInit, OnDestroy {
     'action',
   ];
 
+  isLoading: boolean = true;
+  error!: string;
+
   get isLoggedin(): boolean {
     return this.userService.isLogged;
   }
-  constructor(private cartService: CartService, private http: HttpClient, private userService: UserService) { }
+  constructor(
+    private cartService: CartService,
+    private http: HttpClient,
+    private userService: UserService,
+    private titlePage: Title
+
+  ) { }
 
   ngOnInit(): void {
-   this.subscription = this.cartService.cart.subscribe((_cart: Cart) => {
-      this.cart = _cart;
-      this.dataSource = this.cart.items;
+    // this.subscription = this.cartService.cart.subscribe((_cart: Cart) => {
+    //   this.cart = _cart;
+    //   this.dataSource = this.cart.items;
+    // });
+    this.titlePage.setTitle('Cart page');
+
+    this.subscription = this.cartService.cart.subscribe({
+      next: (_cart) => {
+        this.cart = _cart;
+        this.dataSource = this.cart.items;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.error = err.error.message
+        this.isLoading = false;
+      }
+
     });
   }
 
@@ -47,12 +71,12 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.clearCart();
   }
 
-  onRemoveFromCart(item: CartItem) : void {
+  onRemoveFromCart(item: CartItem): void {
     console.log(item);
     this.cartService.removeFromCart(item);
   }
 
-  onAddQuantity(item: CartItem) : void {
+  onAddQuantity(item: CartItem): void {
     this.cartService.addToCart(item);
   }
 
@@ -61,7 +85,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   onCheckout() {
-    this.http.post('/api/checkout', {items: this.cart.items}).subscribe(async(res:any) => {
+    this.http.post('/api/checkout', { items: this.cart.items }).subscribe(async (res: any) => {
       let stripe = await loadStripe('pk_test_51NbNjYKmnZzSdyArHjxmhaUB4B7j5hrQrNmyo0ppk0PpYmrGwm0Ljin20utrb6SPcJZMomoPFs1EMSQossiiUZYU00kUzeDHDr');
       stripe?.redirectToCheckout({
         sessionId: res.id
@@ -70,7 +94,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }

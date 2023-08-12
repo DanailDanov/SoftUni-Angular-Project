@@ -27,7 +27,7 @@ export class ProductBoxComponent implements OnInit, OnDestroy {
 
   user: User | undefined;
 
-  errMessage!: string;
+  error!: string;
 
   constructor(
     private userService: UserService, 
@@ -39,9 +39,16 @@ export class ProductBoxComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // console.log(this.product);
-    this.Subscription = this.userService.user$.subscribe((user) => {
-      this.user = user;
-      // console.log(this.user);
+    // this.Subscription = this.userService.user$.subscribe((user) => {
+    //   this.user = user;
+    //   // console.log(this.user);
+    // });
+
+    this.Subscription = this.userService.user$.subscribe({
+      next: (_user) => {
+        this.user = _user;
+      },
+      error: (err) => this.error = err.error.message
     });
   }
 
@@ -61,7 +68,7 @@ export class ProductBoxComponent implements OnInit, OnDestroy {
           next: () => {
             window.location.reload()
           },
-          error: (err) => this.errMessage = err.error.message
+          error: (err) => this.error = err.error.message
         })
       }
     })

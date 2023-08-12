@@ -7,7 +7,6 @@ import { ApiService } from 'src/app/services/api.service';
 import { Title } from '@angular/platform-browser';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,10 +18,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   category: string | undefined;
   rowHeight = ROWS_HEIGHT[this.cols];
 
+  isLoading: boolean = true;
+
   error!: string;
 
   products: Array<Product> | undefined;
-  
+
   productsSubscription!: Subscription;
 
   categorySubscription!: Subscription
@@ -51,7 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         // console.log(this.products);
       },
       error: (err) => {
-        this.error = err.error.message
+        this.error = err.error.message;
       }
     })
   }
@@ -61,9 +62,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       next: (_products) => {
         this.products = _products;
         // console.log(this.products);
+        this.isLoading = false;
       },
       error: (err) => {
         this.error = err.error.message
+        this.isLoading = false;
       }
     })
   }

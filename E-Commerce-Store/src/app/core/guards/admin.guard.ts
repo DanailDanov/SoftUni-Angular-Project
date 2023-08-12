@@ -9,31 +9,30 @@ import { UserService } from "src/app/services/user.service";
 
 export class AdminGuard implements CanActivate {
 
-    isAdminId: boolean = false;
-    adminId = ADMIN_AUTHORIZATION;
-    
-    constructor(private userService: UserService, private router: Router)  { }
+  isAdminId: boolean = false;
+  adminId = ADMIN_AUTHORIZATION;
 
-    canActivate(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ):
-        | boolean
-        | UrlTree
-        | Observable<boolean | UrlTree>
-        | Promise<boolean | UrlTree> {
+  constructor(private userService: UserService, private router: Router) { }
 
-            return this.userService.user$.pipe(
-                map(_user => {
-                  this.isAdminId = _user?._id == this.adminId;
-          
-                  if (this.isAdminId) {
-                    console.log(this.isAdminId);
-                    return true;
-                  }
-        
-                  return this.router.createUrlTree(['/home']);
-                })
-              );
-    }
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | boolean
+    | UrlTree
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree> {
+
+    return this.userService.user$.pipe(
+      map(_user => {
+        this.isAdminId = _user?._id == this.adminId;
+
+        if (this.isAdminId) {
+          // console.log(this.isAdminId);
+          return true;
+        }
+        return this.router.createUrlTree(['/home']);
+      })
+    );
+  }
 }
